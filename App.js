@@ -1,37 +1,62 @@
-
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import Botao from "./src/components/botao";
 import Cabecalho from "./src/components/cabecalho";
-
+import Jogos from "./src/components/Jogos";
+import dados from "./dados";
 
 export default function App() {
   return (
-    <View style={{backgroundColor:'#D3D3D3', flex:1}}>
+    <View style={{ backgroundColor: "#581F18", flex: 1 }}>
       <Cabecalho></Cabecalho>
-      <Botao 
+      <Botao
         Logo="logo-android"
-        texto="APLICATIVOS"
+        texto="SUSPENSE"
         cor="#9FE2BF"
-        Logo2="game-controller" 
-        texto2="JOGUINHOS" 
+        Logo2="game-controller"
+        texto2="ROMANCE"
         cor2="#820066"
       />
-      <Botao 
+      <Botao
         Logo="film"
-        texto="FILMES"
+        texto="COMÉDIA"
         cor="#FF7F50"
-        Logo2="musical-notes" 
-        texto2="MUSICAS" 
+        Logo2="musical-notes"
+        texto2="BIOGRAFIA"
         cor2="#6495ED"
       />
-      <Botao 
+      <Botao
         Logo="book"
-        texto="LIVROS"
+        texto="AUDIOLIVRO"
         cor="#CCCCFF"
-        Logo2="journal" 
-        texto2="NOTICIAS" 
+        Logo2="journal"
+        texto2="NOTICIAS"
         cor2="#FFBF00"
       />
-     </View>
+
+      <Text style={estilo.Title}>Lançamentos</Text>
+      <FlatList 
+        horizontal={true} 
+        data={dados} 
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+
+          <Jogos
+            titulo={item.nome}
+            valor={item.valor}
+            imagem={item.imagem}
+          />
+        )}
+        />
+    </View>
   );
 }
+
+const estilo = StyleSheet.create({
+  Title: {
+    fontSize: 20,
+    textTransform: "uppercase",
+    margin: 5,
+    color: "white",
+  },
+
+});
