@@ -2,7 +2,10 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import Botao from "./src/components/botao";
 import Cabecalho from "./src/components/cabecalho";
 import Jogos from "./src/components/Jogos";
+import CardLancamentos from "./src/components/CardLancamentos"
 import dados from "./dados";
+import LANCAMENTOS from "./dados/lancamentos";
+
 
 export default function App() {
   return (
@@ -33,20 +36,40 @@ export default function App() {
         cor2="#FFBF00"
       />
 
-      <Text style={estilo.Title}>Lançamentos</Text>
-      <FlatList 
-        horizontal={true} 
-        data={dados} 
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
+  <Text style={estilo.Title}>Livros</Text>
+      <View>
+        <FlatList 
+          horizontal={true} 
+          data={dados} 
+          keyExtractor={item => item.id}
+          renderItem={({item}) => (
 
-          <Jogos
-            titulo={item.nome}
-            valor={item.valor}
-            imagem={item.imagem}
-          />
-        )}
+            <Jogos
+              titulo={item.nome}
+              valor={item.valor}
+              imagem={item.imagem}
+            />
+          )}
         />
+      </View>
+      
+      <Text style={estilo.Title}>Lançamentos</Text>
+      <View>
+        <FlatList 
+          horizontal={true} 
+          data={LANCAMENTOS} 
+          keyExtractor={item => item.id}
+          renderItem={({item}) => (
+
+            <CardLancamentos
+              titulo={item.nome}
+              data={item.data}
+              imagem={item.imagem}
+            />
+          )}
+        />
+      </View>
+      
     </View>
   );
 }
